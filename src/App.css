@@ -740,6 +740,18 @@ header{
         font-size: .8rem;
         margin-right: 5px;
     }
+    .product .buy .add-to-basket div span{
+        width: 30px;
+        height: 30px;
+       
+    }
+    .product .buy .add-to-basket div input{
+        width: 40px;
+        text-align: center;
+        border: none;
+        border-bottom: 1px solid rgba(133,133,133,1);
+    }
+    
     .product .buy .price{
         font-size: .7rem;
         margin: 0 20px 0 0;
@@ -761,9 +773,14 @@ header{
     }
     .details .wrapper .content{
         display: block;
+        padding: 5px;
     }
     .details .wrapper .content .image{
         float: left;
         height: 150px;
     }
+    .products-displayed{
+        width: 90%;
+    }
+    
 }
