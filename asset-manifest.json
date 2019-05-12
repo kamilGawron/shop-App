@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/shop-App/static/css/main.1032825e.chunk.css",
+    "main.js": "/shop-App/static/js/main.ff14951d.chunk.js",
+    "main.js.map": "/shop-App/static/js/main.ff14951d.chunk.js.map",
+    "runtime~main.js": "/shop-App/static/js/runtime~main.b87a2284.js",
+    "runtime~main.js.map": "/shop-App/static/js/runtime~main.b87a2284.js.map",
+    "static/js/2.aba3a867.chunk.js": "/shop-App/static/js/2.aba3a867.chunk.js",
+    "static/js/2.aba3a867.chunk.js.map": "/shop-App/static/js/2.aba3a867.chunk.js.map",
+    "index.html": "/shop-App/index.html",
+    "precache-manifest.a9dcce4f9a40d5c9d827b0d4c35a5d65.js": "/shop-App/precache-manifest.a9dcce4f9a40d5c9d827b0d4c35a5d65.js",
+    "service-worker.js": "/shop-App/service-worker.js",
+    "static/css/main.1032825e.chunk.css.map": "/shop-App/static/css/main.1032825e.chunk.css.map"
+  }
+}
