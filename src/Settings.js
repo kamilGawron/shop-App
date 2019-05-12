@@ -32,18 +32,29 @@ function Settings(props){
         
         filters.style.display =filters.style.display =="none"? "flex" : "none";
        
-        productsList.style.paddingTop = productsList.style.paddingTop=="120px"? "200px" : "120px";
         
-        document.getElementById("filtersChevron").style.transform += "rotate(180deg)"
+        
+        document.getElementById("filtersChevron").style.transform += "rotate(180deg)";
+        if(window.innerWidth>480){
+            productsList.style.paddingTop = productsList.style.paddingTop=="120px"? "200px" : "120px";
+        }
+        
     }
     return(
        
         <div className="settings">
             <div className="filters">
-                <div className="header">filters &nbsp; <img id="filtersChevron" onClick={showFilters} src={chevronDown} alt=""/></div>
+                <div className="header">filters &nbsp; <img id="filtersChevron" onClick={showFilters} src={chevronDown} alt=""/>
+                    {props.productsCounter!=props.productsBaseCounter?             <div className="matches-phone">matches:{props.productsCounter}</div> :<div></div>
+                    }
+                    </div>
                 <div id="filters" className="filters-content">
                     {/* PHONE ONLY*/}
+                    <div className="search-phone">
+                        <input id="searchItems" onChange={props.inputChangeHandler}  type="text" placeholder="search items"/>
+                        {searchInputValue!=""? <span className="close" onClick={clearInput}>X</span> :""}
 
+                    </div>
                    <div className="sort-phone">
                 <select onChange={props.sortListHandler} name="" id="">
                     <option value="default">sort list</option>
@@ -53,11 +64,7 @@ function Settings(props){
                     <option value="priceAsc">Price ascending</option>
                 </select>
             </div>
-            <div className="search-phone">
-                <input id="searchItems" onChange={props.inputChangeHandler}  type="text" placeholder="search items"/>
-                {searchInputValue!=""? <span className="close" onClick={clearInput}>X</span> :""}
-
-            </div>
+            
                    
                    
                    
@@ -104,7 +111,7 @@ function Settings(props){
                 {searchInputValue!=""? <span className="close" onClick={clearInput}>X</span> :""}
                 
             </div>
-            {props.productsCounter!=props.productsBaseCounter?             <div className="matches">matches:{props.productsCounter}</div> :<div></div>
+            {props.productsCounter!=props.productsBaseCounter?             <div id="matches" className="matches">matches:{props.productsCounter}</div> :<div></div>
             }
             
            

@@ -13,7 +13,7 @@ class App extends React.Component {
         super();
         this.state={
             productsBaseCounter:0,
-            products:[{}],
+            products:[],
             currency:"EUR",
             basket:[],
             productsPerPage:10,
@@ -47,7 +47,10 @@ class App extends React.Component {
    componentWillUpdate(){
        
        if(document.getElementById("productsList")){
-           document.getElementById("productsList").style.paddingTop=document.getElementById("filters").style.display=="none"? "120px" : "200px";}
+           if(document.innerWidth>480){
+               document.getElementById("productsList").style.paddingTop=document.getElementById("filters").style.display=="none"? "120px" : "200px";
+           }}
+           
    }
     componentDidMount() {
         var self=this;
@@ -192,7 +195,6 @@ class App extends React.Component {
         })
     }
     removeItem(id){
-        console.log(id);
         let newData=this.state.products.map(function(elem){
             if(elem.id==id){
                 elem.amount+=elem.addedToBasket;

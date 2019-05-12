@@ -70,13 +70,14 @@ function Basket(props){
 
     }
     function showBasketList(){
-        document.getElementById("basketList").style.display = "block";
+        let basketList=document.getElementById("basketList");
+        basketList.style.display = basketList.style.display=="block"? "none" : "block";
     }
     function closeBasketList(){
         document.getElementById("basketList").style.display = "none";
     }
     return(
-        <div>
+        <div id="basket">
             <div className="basket-header">
                 <div onClick={showBasketList}>
                     <img height="30px" width="30px" src={basketIcon} alt=""/>&nbsp;
