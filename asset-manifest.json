@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/shop-App/static/css/main.d864c242.chunk.css",
+    "main.css": "/shop-App/static/css/main.f7de527b.chunk.css",
     "main.js": "/shop-App/static/js/main.abba5fa6.chunk.js",
     "main.js.map": "/shop-App/static/js/main.abba5fa6.chunk.js.map",
     "runtime~main.js": "/shop-App/static/js/runtime~main.b87a2284.js",
@@ -8,8 +8,8 @@
     "static/js/2.aba3a867.chunk.js": "/shop-App/static/js/2.aba3a867.chunk.js",
     "static/js/2.aba3a867.chunk.js.map": "/shop-App/static/js/2.aba3a867.chunk.js.map",
     "index.html": "/shop-App/index.html",
-    "precache-manifest.e76952cef517d0e6da697c621221818b.js": "/shop-App/precache-manifest.e76952cef517d0e6da697c621221818b.js",
+    "precache-manifest.8d921b5643a6a82207f05d49b889eb14.js": "/shop-App/precache-manifest.8d921b5643a6a82207f05d49b889eb14.js",
     "service-worker.js": "/shop-App/service-worker.js",
-    "static/css/main.d864c242.chunk.css.map": "/shop-App/static/css/main.d864c242.chunk.css.map"
+    "static/css/main.f7de527b.chunk.css.map": "/shop-App/static/css/main.f7de527b.chunk.css.map"
   }
 }
