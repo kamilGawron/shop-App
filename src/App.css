@@ -350,6 +350,7 @@ header{
     font-size: 1.2rem;
     border: 1px solid rgba(6, 113, 2,.7);
     border-radius: 50%;
+    
 }
 .product .buy .add-to-basket div input{
     width: 40px;
@@ -624,8 +625,56 @@ header{
         width: 60%;
     }
 }
+@media only screen 
+    and (min-device-width: 320px) 
+    and (max-device-width: 849px)
+    and (-webkit-min-device-pixel-ratio: 2)
+    and (orientation: landscape) {
+        .product .buy .add-to-basket div span{
+            width: 30px;
+            height: 30px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
 
-@media all and (min-width: 480px) and (max-width: 768px) { 
+        }
+        .details .wrapper{
+            top:5%;
+            width: 90%;
+            left: 5%;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .details .wrapper h2{
+            font-size: 1.2rem;
+            padding: 0;
+            margin: 0;
+            margin-bottom: 5px;
+            padding: 10px;
+
+        }
+        .details .wrapper .close{
+            margin: 10px 15px 0 0;
+        }
+        .details .wrapper .content{
+            margin: 0;
+            display: block;
+            padding-left: 5px;
+            font-size: .9rem;
+        }
+
+}
+@media all and (min-width: 480px) and (max-width: 768px){ 
+    header{
+        position: fixed;
+        z-index: 10;
+    }
     .basketList{
         left: 5%;
         width: 90%;
@@ -648,6 +697,30 @@ header{
     }
     .showMoreBtn{
         width: 80%;
+    }
+    .details{
+        z-index: 100;
+    }
+    .details .wrapper{
+        overflow: hidden;
+        top:5%;
+        width: 90%;
+        left: 5%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .details .wrapper .content{
+        display: block;
+        padding-left: 5px;
+    }
+    .details .wrapper h2{
+        padding:5px;
+        margin-top: 0;
+        width: 100%;
+    }
+    .details .wrapper .content .image{
+        float: left;
+        height: 100px;
     }
 
 }
@@ -800,16 +873,36 @@ header{
         font-size: 1rem;
         width: 90%;
     }
+    .details{
+        z-index: 100;
+    }
+
     .details .wrapper{
+        background-color: rgba(0,0,0,.9);
         width: 96%;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
         left: 2%;
-        top: 90px;
+        top: 5%;
+        position: relative;
+        z-index: 100;
+    }
+    .details .wrapper h2{
+        font-size: 1.2rem;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 5px;
+        padding: 10px;
+
+    }
+    .details .wrapper .close{
+        margin: 10px 15px 0 0;
     }
     .details .wrapper .content{
+        margin: 0;
         display: block;
-        padding: 5px;
+        padding-left: 5px;
+        font-size: .9rem;
     }
     .details .wrapper .content .image{
         float: left;
