@@ -14,6 +14,7 @@ function ProductsList(props) {
                 inputChange={props.inputChange}
                 currencyConverter = {props.currencyConverter}
                 detailsToggle = {props.detailsToggle}
+                key={prod.id}
 
             />
         )

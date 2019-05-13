@@ -39,7 +39,7 @@ function Product(props){
     }
     
     return(
-        <div className="product">
+        <div className="product" key={id}>
            
             <img src={image} alt=""/>
             <div>

@@ -3,9 +3,9 @@ import React from "react"
 function CurrencyChange(props){
     
     let keys=Object.keys(props.exchangeRates);
-    let options=keys.map(function(elem){
+    let options=keys.map(function(elem,index){
         return(
-            <option name={elem} value={props.exchangeRates[elem]}>{elem}</option>
+            <option key={index} name={elem} value={props.exchangeRates[elem]}>{elem}</option>
         )
     })
     

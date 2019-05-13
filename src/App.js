@@ -35,23 +35,14 @@ class App extends React.Component {
             },
 
         }
-        this.addItemToBasket = this.addItemToBasket.bind(this);
-        this.decreaseInputVal = this.decreaseInputVal.bind(this);
-        this.increaseInputVal = this.increaseInputVal.bind(this);
-        this.inputChange = this.inputChange.bind(this);
-        this.showMore = this.showMore.bind(this);
-        this.removeItem = this.removeItem.bind(this);
-        this.inputChangeHandler = this.inputChangeHandler.bind(this);
         
     }
    componentWillUpdate(){
-       
-       if(document.getElementById("productsList")){
-           if(document.innerWidth>480){
-               document.getElementById("productsList").style.paddingTop=document.getElementById("filters").style.display=="none"? "120px" : "200px";
-           }}
-           
+       if(this.state.products[0]){
+           document.getElementById("productsList").style.paddingTop="120px";
+       }        
    }
+    
     componentDidMount() {
         var self=this;
         fetch("https://gist.githubusercontent.com/kamilGawron/6f2783938e98bae71fff31be0bf6377b/raw/dc0748e17b013394ccc5803babcae01341bb0d14/products.json")
@@ -77,17 +68,15 @@ class App extends React.Component {
             })
         })
         
-        
         fetch("https://api.exchangeratesapi.io/latest")
         .then(response=>response.json())
             .then(data=>this.setState({exchangeRates:data.rates}))
         
         document.getElementById("details").style.display="none";
         document.getElementById("filters").style.display="none";
-
-            
     }
-    inputChange(e){
+    
+    inputChange=e=>{
         const{id,name,value} = e.target;
         let modData = this.state.products.map(function(prod){
             if((prod.id==id)){
@@ -102,7 +91,8 @@ class App extends React.Component {
         })
         this.setState({products:modData});
     }
-    decreaseInputVal(id){
+    
+    decreaseInputVal=id=>{
         let modData = this.state.products.map(function(prod){
             if((prod.id==id)&&(prod.inputValue>1)){
                 prod.inputValue = prod.inputValue-1;
@@ -111,7 +101,8 @@ class App extends React.Component {
         })
         this.setState({products:modData});
     }
-    increaseInputVal(id){
+    
+    increaseInputVal=id=>{
         let modData = this.state.products.map(function(prod){
             if(prod.id==id ){
                 prod.inputValue = prod.inputValue<prod.amount? prod.inputValue+1: prod.amount;
@@ -121,7 +112,7 @@ class App extends React.Component {
         this.setState({products:modData});
     }
 
-    addItemToBasket(props){
+    addItemToBasket=props=>{
         const {id,name,price,inputValue,amount} = props;
         
         if(amount>=inputValue){
@@ -187,14 +178,15 @@ class App extends React.Component {
         
         
     }
-    showMore(){
+    showMore=()=>{
         this.setState(prevState=>{
             return{
                 productsPerPage:prevState. productsPerPage+10
             }
         })
     }
-    removeItem(id){
+    
+    removeItem=id=>{
         let newData=this.state.products.map(function(elem){
             if(elem.id==id){
                 elem.amount+=elem.addedToBasket;
@@ -206,15 +198,14 @@ class App extends React.Component {
         })
         this.setState({products:newData})
         let newBasket = this.state.basket.filter(function(elem){
-          
             if(elem.id!=id){
                 return elem;
             }
         })
         this.setState({basket:newBasket})
     }
+    
     changeCurrencyHandler=(currName,exchange)=>{
-        
         this.setState({
             currency:currName,
             currencyConverter:exchange
@@ -225,74 +216,75 @@ class App extends React.Component {
             this.priceRangeChange({target:{name:"maxPrice",value:maxPrice}})
         })
     }
-    inputChangeHandler(e){
+    
+    inputChangeHandler=(e)=>{
         const {value}=e.target;
         this.setState({searchInputValue:value});
     }
-sortListHandler = (e)=>{
-    const {value}=e.target;
-    let modProd;
-    let sort=false;
-    if(value=="nameDesc"){
-        sort=!sort;
-        modProd = this.state.products.sort((a,b)=>a.name<b.name? 1:-1);
-    }else if(value=="nameAsc"){
-        sort=!sort;
-     modProd=this.state.products.sort((a,b)=>a.name>b.name? 1:-1)
-    }else if(value=="priceDesc"){
-        sort=!sort;
-        modProd = this.state.products.sort((a,b)=>a.price<b.price? 1:-1);
-    }else if(value=="priceAsc"){
-        sort=!sort;
-        modProd = this.state.products.sort((a,b)=>a.price<b.price? -1:1);
-    }
-    sort && this.setState({products:modProd});
-}
-priceRangeChange=(e)=>{
-    const{name} = e.target;
-    let value;
     
-    if((e.target.value=="")&&(e.target.name=="minPrice")){
-        value=Number.NEGATIVE_INFINITY;
-    }else if((e.target.value=="")&&(e.target.name=="maxPrice")){
-        value=Number.POSITIVE_INFINITY;
-    }else{
-        value=e.target.value;
+    sortListHandler = (e)=>{
+        const {value}=e.target;
+        let modProd;
+        let sort=false;
+        if(value=="nameDesc"){
+            sort=!sort;
+            modProd = this.state.products.sort((a,b)=>a.name<b.name? 1:-1);
+        }else if(value=="nameAsc"){
+            sort=!sort;
+            modProd=this.state.products.sort((a,b)=>a.name>b.name? 1:-1)
+        }else if(value=="priceDesc"){
+            sort=!sort;
+            modProd = this.state.products.sort((a,b)=>a.price<b.price? 1:-1);
+        }else if(value=="priceAsc"){
+            sort=!sort;
+            modProd = this.state.products.sort((a,b)=>a.price<b.price? -1:1);
+        }
+        sort && this.setState({products:modProd});
     }
- this.setState({[name]:value})
-}
-selectOriginCountryHandler =(e)=>{
-   this.setState({[e.target.name]:e.target.value})
-}
+    priceRangeChange=(e)=>{
+        const{name} = e.target;
+        let value;
+        if((e.target.value=="")&&(e.target.name=="minPrice")){
+            value=Number.NEGATIVE_INFINITY;
+        }else if((e.target.value=="")&&(e.target.name=="maxPrice")){
+            value=Number.POSITIVE_INFINITY;
+        }else{
+            value=e.target.value;
+        }
+     this.setState({[name]:value})
+     
+    }
+    selectOriginCountryHandler =(e)=>{
+       this.setState({[e.target.name]:e.target.value})
+    }
 
-detailsToggle=(name,image,desc,amount,addedToBasket,price,country,)=>{
-    name = name || '';
-    image = image || '';
-    desc = desc || '';
-    amount = amount || 0;
-    country = country || "";
-    price = price || 0;
-    addedToBasket = addedToBasket || 0;
+    detailsToggle=(name,image,desc,amount,addedToBasket,price,country,)=>{
+        name = name || '';
+        image = image || '';
+        desc = desc || '';
+        amount = amount || 0;
+        country = country || "";
+        price = price || 0;
+        addedToBasket = addedToBasket || 0;
+
+        this.setState({details:{
+            name:name,
+            image:image,
+            desc:desc,
+            amount:amount,
+            pcsInBasket:addedToBasket,
+            countryOfOrigin:country,
+            price:price,
+        }})
+        let details = document.getElementById("details");
+        details.style.display= details.style.display=="none"? "block" : "none";
+    }
     
-    
-    this.setState({details:{
-        name:name,
-        image:image,
-        desc:desc,
-        amount:amount,
-        pcsInBasket:addedToBasket,
-        countryOfOrigin:country,
-        price:price,
-    }})
-    let details = document.getElementById("details");
-    details.style.display= details.style.display=="none"? "block" : "none";
-}
 
     render(){
         let resultProd;
         let productsCounter=0;
-         
-        resultProd= this.state.products[1]?  this.state.products.filter((elem)=>{
+        resultProd= this.state.products[0]?  this.state.products.filter((elem)=>{
 
             if(
                 (elem.name.toLowerCase().includes(this.state.searchInputValue.toLowerCase()))&&
@@ -307,7 +299,6 @@ detailsToggle=(name,image,desc,amount,addedToBasket,price,country,)=>{
         
         return (
             <div >
-               
                 <Header 
                     basket={this.state.basket}
                     currency={this.state.currency}
@@ -316,31 +307,29 @@ detailsToggle=(name,image,desc,amount,addedToBasket,price,country,)=>{
                     currencyConverter={this.state.currencyConverter}
                     exchangeRates={this.state.exchangeRates} 
                     changeCurrencyHandler={this.changeCurrencyHandler} 
-                        
-
-                    />
-                    <Settings
-                        inputChangeHandler = {this.inputChangeHandler} 
-                        searchInputValue = {this.state.searchInputValue}
-                        sortListHandler=
-                        {this.sortListHandler}
-                        priceRangeChange={this.priceRangeChange}
-                        productsCounter={productsCounter}
-                        productsBaseCounter={this.state.productsBaseCounter}
-                        maxAvaiablePrice = {this.state.maxAvaiablePrice}
-                        currencyConverter={this.state.currencyConverter}
-                        countriesOfOrigin = {this.state.countriesOfOrigin}
-                        selectOriginCountryHandler = {this.selectOriginCountryHandler}
-                        minPrice ={this.state.minPrice}
-                        maxPrice={this.state.maxPrice}
-                        currency={this.state.currency}
-                    />
-                    
+                />
+                
+                <Settings
+                    inputChangeHandler = {this.inputChangeHandler} 
+                    searchInputValue = {this.state.searchInputValue}
+                    sortListHandler=
+                    {this.sortListHandler}
+                    priceRangeChange={this.priceRangeChange}
+                    productsCounter={productsCounter}
+                    productsBaseCounter={this.state.productsBaseCounter}
+                    maxAvaiablePrice = {this.state.maxAvaiablePrice}
+                    currencyConverter={this.state.currencyConverter}
+                    countriesOfOrigin = {this.state.countriesOfOrigin}
+                    selectOriginCountryHandler = {this.selectOriginCountryHandler}
+                    minPrice ={this.state.minPrice}
+                    maxPrice={this.state.maxPrice}
+                    currency={this.state.currency}
+                />
                 
                 {
                     this.state.products[1]? 
-                        
                         <div>
+                           
                             <ProductsList 
                                 api="https://gist.githubusercontent.com/kamilGawron/6f2783938e98bae71fff31be0bf6377b/raw/dc0748e17b013394ccc5803babcae01341bb0d14/products.json"
                                 currency={this.state.currency}
@@ -353,26 +342,33 @@ detailsToggle=(name,image,desc,amount,addedToBasket,price,country,)=>{
                                 inputChange={this.inputChange}
                                 currencyConverter={this.state.currencyConverter}
                                 detailsToggle = {this.detailsToggle}
-
-                                />
+                            />
                                 
-                                {
-                                productsCounter==0?  <span className="no-founds">No Founds</span> : productsCounter-this.state.productsPerPage>0? <span className="showMoreBtn" onClick={this.showMore}>Show more products (+ {productsCounter-this.state.productsPerPage})</span> :  <span className="products-displayed" >All products are displayed</span>
-                               
-                                    
+                            {
+                                productsCounter==0?  
+                                    <span className="no-founds">No Founds</span> 
+                                    : 
+                                    productsCounter-this.state.productsPerPage>0? 
+                                        <span className="showMoreBtn" onClick={this.showMore}>Show more products (+ {productsCounter-this.state.productsPerPage})</span> 
+                                        : 
+                                        <span className="products-displayed" >All products are displayed</span>
                             }
                            
                         </div> 
                         :
-                    <div>loading...</div>
+                        <div className="loading">
+                           Loading...
+                            <div className="loader">
+                            </div>
+                        </div>
                 }
+                
                 <Details 
-                details={this.state.details} 
-                detailsToggle = {this.detailsToggle} 
-                currency={this.state.currency}
-                currencyConverter={this.state.currencyConverter}
+                    details={this.state.details} 
+                    detailsToggle = {this.detailsToggle} 
+                    currency={this.state.currency}
+                    currencyConverter={this.state.currencyConverter}
                 />
-               
             </div>
         );
     }

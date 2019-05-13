@@ -10,9 +10,9 @@ function Settings(props){
         searchInput.value="";
         props.inputChangeHandler({target:{value:""}});
     }
-    let options = props.countriesOfOrigin.map(function(elem){
+    let options = props.countriesOfOrigin.map(function(elem,index){
         return(
-            <option value={elem}>{elem}</option>
+            <option key={index} value={elem}>{elem}</option>
         )
     })
     function clearMinPrice(){
@@ -35,9 +35,10 @@ function Settings(props){
         
         
         document.getElementById("filtersChevron").style.transform += "rotate(180deg)";
+        
         if(window.innerWidth>480){
-            productsList.style.paddingTop = productsList.style.paddingTop=="120px"? "200px" : "120px";
-        }
+                document.getElementById("productsList").style.paddingTop=document.getElementById("filters").style.display=="none"? "120px" : "200px";
+            }
         
     }
     return(
